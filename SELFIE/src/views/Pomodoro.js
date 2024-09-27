@@ -1,7 +1,8 @@
 export default function Pomodoro(){
     return (
-        <div className='Pomodoro'>
-            <h1>Pomodoro view</h1>
+        <div className='pomodoro-container'>
+            <h1>Pomodoro Timer</h1>
+            
         </div>
     )
 }

@@ -7,6 +7,7 @@ import Login from './views/Login'
 import Note from './views/Note'
 import Pomodoro from './views/Pomodoro'
 import TimeMachine from './views/TimeMachine'
+import SetPomodoro from './components/SetPomodoro';
 
 function App() {
   return (
@@ -30,6 +31,8 @@ function App() {
           <Route path='timeMachine' element={<TimeMachine />} />
         </Routes>
       </main>
+      {/*<SetPomodoro />*/}
+      {/*<CountdownCircleTimer />*/}
     </BrowserRouter>
   );
 }
