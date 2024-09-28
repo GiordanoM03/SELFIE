@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from './Button'
+import { SettingContext } from '../context/SettingContext';
 
 const SetPomodoro = () => {
     const [newTimer, setNewTimer]= useState({
@@ -8,6 +9,8 @@ const SetPomodoro = () => {
         cicle: 5,
         active: 'study'
     })
+
+    const {updateExecute} = useContext(SettingContext)
 
     const handleChange= input =>{
         const {name, value}= input.target
@@ -31,19 +34,17 @@ const SetPomodoro = () => {
                     cicle: parseInt(value)
                 })
                 break;
-            default:
-                break;
         }
     }
 
     const handleSubmit= e =>{
         e.preventDefault()
-        //updateExecute(newTimer)
+        updateExecute(newTimer)
     }
 
   return (
     <div className="form-container">
-        <form noValidate>
+        <form noValidate onSubmit={handleSubmit}>
             <div className="input-wrapper">
                 <input className='input' name='study' onChange={handleChange} value={newTimer.study}/>
                 <input className='input' name='break' onChange={handleChange} value={newTimer.break}/>

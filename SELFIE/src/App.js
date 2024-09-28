@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter, Routes, Route, Link, NavLink} from 'react-router-dom'
+import {BrowserRouter, Routes, Route, NavLink} from 'react-router-dom'
 
 import Calendar from './views/Calendar'
 import Home from './views/Home'
@@ -7,9 +7,9 @@ import Login from './views/Login'
 import Note from './views/Note'
 import Pomodoro from './views/Pomodoro'
 import TimeMachine from './views/TimeMachine'
-import SetPomodoro from './components/SetPomodoro';
 
-function App() {
+const App= ()=> {
+
   return (
     <BrowserRouter>
       <header>
@@ -31,9 +31,7 @@ function App() {
           <Route path='timeMachine' element={<TimeMachine />} />
         </Routes>
       </main>
-      {/*<SetPomodoro />*/}
-      {/*<CountdownCircleTimer />*/}
-    </BrowserRouter>
+      </BrowserRouter> 
   );
 }
 
