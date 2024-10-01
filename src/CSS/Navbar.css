@@ -1,0 +1,37 @@
+/*css della nav bar temporaneo, solo per avere le cose un po' più ordinate*/
+.nav-button{
+    background: none;
+    border: none;
+    margin: 0 10px 0 0;
+    font-size: 20px;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-button:hover{
+    background-color: white;
+    color: black;
+    opacity: 0.7;
+}
+
+nav{
+    background-color: rgba(255, 255, 255, 0.4);
+    margin-top: 15px;
+    display: flex;
+    justify-content: right;
+    margin-right: 10px;
+    height: 40px;
+    width: 100%;
+}
+
+
+.app-container{
+    background-color: #e6e6ff;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
