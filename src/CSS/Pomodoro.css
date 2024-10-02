@@ -5,19 +5,33 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    background: linear-gradient(to left, #de6161, #2657eb);
   }
 
 .pom-container > ul li {
     list-style-type: none;
   }
 
-ul{
+  .pom-container h1{
+    color: white;
+    margin-top: -20vh;
+  }
+
+  /*
+.labels {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
     display: flex;
-    flex-direction: row;
-}
+    justify-content: center;
+    align-items: center;
+    z-index: 10; 
+    position: relative; 
+}*/
  
 .active-label {
-    color: black;
+    border-radius: 10px;
+    background-color: none;
 }
 
 .button-pom{
@@ -25,9 +39,6 @@ ul{
     margin: 0 30px 0 0;
 }
 
-.pom-container Button:hover{
-    color: pink;
-}
 
 .pom-container button{
     background-color: white;
@@ -103,3 +114,84 @@ button {
     font-size: 14pt;
 }*/
   
+
+/*CSS animazione sfondo*/
+
+.pom-background-animation{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.pom-background-animation li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 25px;
+    height: 25px;
+    border: 10px solid rgba(255, 255, 255, 0.2);
+    animation: animate 20s linear infinite;
+    bottom: -150px;
+    border-radius: 10px;
+}
+
+.pom-background-animation li:nth-child(1){
+    left: 86%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+
+.pom-background-animation li:nth-child(2){
+    left: 12%;
+    width: 30px;
+    height: 30px;
+    animation-delay: 1.5s;
+    animation-duration: 10s;
+}
+
+.pom-background-animation li:nth-child(3){
+    left: 70%;
+    width: 100px;
+    height: 100px;
+    animation-delay: 5.5s;
+}
+
+.pom-background-animation li:nth-child(4){
+    left: 42%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 15s;
+}
+
+.pom-background-animation li:nth-child(5){
+    left: 65%;
+    width: 40px;
+    height: 40px;
+    animation-delay: 0s;
+}
+
+.pom-background-animation li:nth-child(6){
+    left: 15%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3.5s;
+}
+
+
+@keyframes animate{
+    0%{
+        transform: translateY(0) rotate(0);
+        opacity: 1;
+    }
+
+    100%{
+        transform: translateY(-800px) rotate(360deg);
+        opacity: 0;
+    }
+}

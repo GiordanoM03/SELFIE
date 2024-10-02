@@ -1,7 +1,7 @@
-/**/ 
 import React, { useContext, useState } from 'react';
 import Button from './Button'
 import { SettingContext } from '../context/SettingContext';
+import '../CSS/SetPomodoro.css';
 
 const SetPomodoro = () => {
     const [newTimer, setNewTimer]= useState({
@@ -53,7 +53,7 @@ const SetPomodoro = () => {
                 <input className='input' type="number" name='pausa' onChange={handleChange} value={newTimer.break}/>
                 <input className='input' type="number" name='ciclo' onChange={handleChange} value={newTimer.cicle}/>
             </div>
-            <Button title="Imposta timer" _callback={handleSubmit}/>
+            <Button className="setTimer" title="Imposta timer" _callback={handleSubmit}/>
         </form>
     </div>
 

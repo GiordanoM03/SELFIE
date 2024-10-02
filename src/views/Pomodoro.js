@@ -1,4 +1,4 @@
-/**/ 
+
 import SetPomodoro from '../components/SetPomodoro';
 import { useContext, useEffect } from 'react';
 import { SettingContext } from '../context/SettingContext';
@@ -19,13 +19,14 @@ const Pomodoro=()=>{
         updateExecute} = useContext(SettingContext)
         
     useEffect(()=> {updateExecute(executing)}, [executing, startAnimate])
+
     return (
         <div className="pom-container">
-
+          <h1>Pomodoro Timer</h1>
       {pomodoro == 0 ? 
         <SetPomodoro /> : 
         <>
-          <ul className='lables'>
+          <ul className='labels'>
             <li>
               <Button className='button-pom' title="Studio" activeClass={executing.active === 'study' ? 'active-label' : undefined}
                 _callback={()=> setCurrentTimer('study')}
@@ -60,8 +61,18 @@ const Pomodoro=()=>{
             <Button title='Avvia' className={!startAnimate ? 'active' : undefined} _callback={startTimer}/>
             <Button title='Ferma' className={startAnimate ? 'active' : undefined} _callback={pauseTimer}/>
           </div>
-        </> 
+        </>          
+        /*<ul className="pom-background-animation">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul> */  
         }
+        
+        
       </div> 
     )
 }
