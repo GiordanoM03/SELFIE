@@ -20,7 +20,7 @@ const SetPomodoro = () => {
             case 'studio':
                 setNewTimer({
                     ...newTimer,
-                    study: parseInt(value)
+                    study: parseFloat(value)
                 })
                 break;
 
@@ -37,6 +37,9 @@ const SetPomodoro = () => {
                     cicle: parseInt(value)
                 })
                 break;
+            
+            default:
+                break;
         }
     }
 
@@ -46,14 +49,14 @@ const SetPomodoro = () => {
     }
 
   return (
-    <div className="form-container">
+    <div className="set-form-container">
         <form noValidate onSubmit={handleSubmit}>
             <div className="input-wrapper">
                 <input className='input' type="number" name='studio' onChange={handleChange} value={newTimer.study}/>
                 <input className='input' type="number" name='pausa' onChange={handleChange} value={newTimer.break}/>
                 <input className='input' type="number" name='ciclo' onChange={handleChange} value={newTimer.cicle}/>
             </div>
-            <Button className="setTimer" title="Imposta timer" _callback={handleSubmit}/>
+            <Button className="setTimer" title="Inizia" _callback={handleSubmit}/>
         </form>
     </div>
 

@@ -1,4 +1,3 @@
-/**/ 
 import React, {createContext, useState} from 'react'
 
 export const  SettingContext= createContext()
@@ -27,11 +26,20 @@ const SettingButton = () => {
 }
 
 function setCurrentTimer(active_state){
-    updateExecute({
-        ...executing,
-        active: active_state
-    })
-    setTimerTime(executing)
+
+    if (active_state === 'cicle') {
+        updateExecute({
+            ...executing,
+            active: 'cicle', 
+        });
+        setPomodoro(executing.cicle * (executing.study + executing.break));
+    } else {
+        updateExecute({
+            ...executing,
+            active: active_state,
+        });
+        setTimerTime(executing);
+    }
 }
 
 const updateExecute = updatedSettings => {
@@ -50,7 +58,16 @@ const setTimerTime = evalute => {
             break;
 
         case 'cicle':
-            setPomodoro(evalute.cicle)
+            if (evalute.cicle > 0) {
+                setPomodoro(evalute.study); 
+                setExecuting({
+                    ...evalute,
+                    cicle: evalute.cicle - 1 
+                });
+            } else {
+                setPomodoro(0); 
+                setStartAnimate(false); 
+            }
             break;
     
         default:
@@ -60,10 +77,12 @@ const setTimerTime = evalute => {
 }
 
 const children = ({remainingTime}) => {
-    const minutes = Math.floor(remainingTime/60)
-    const seconds = remainingTime % 60
 
-    return `${minutes}:${seconds}`
+    const hours = Math.floor(remainingTime / 3600)
+    const minutes = Math.floor((remainingTime % 3600) / 60)
+    const seconds = remainingTime % 60
+  
+    return `${hours}:${minutes}:${seconds}`
 }
 
   return (

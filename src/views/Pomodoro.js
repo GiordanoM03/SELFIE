@@ -18,12 +18,13 @@ const Pomodoro=()=>{
         pauseTimer,
         updateExecute} = useContext(SettingContext)
         
-    useEffect(()=> {updateExecute(executing)}, [executing, startAnimate])
+    useEffect(()=> updateExecute(executing), [executing, startAnimate])
+    console.log(pomodoro);
 
     return (
         <div className="pom-container">
           <h1>Pomodoro Timer</h1>
-      {pomodoro == 0 ? 
+      {pomodoro === 0 || executing.cicle<=0 ? 
         <SetPomodoro /> : 
         <>
           <ul className='labels'>
@@ -40,12 +41,12 @@ const Pomodoro=()=>{
             </li>
 
             <li>
-              <Button className='button-pom' title="Ciclo" activeClass={executing.active === 'cicle' ? 'active-label' : undefined}
-                _callback={()=> setCurrentTimer('cicle')}
-              />
+            <Button className='button-pom' title={`Ciclo (${executing.cicle})`} activeClass={executing.active === 'cicle' ? 'active-label' : undefined}
+    _callback={()=> setCurrentTimer('cicle')}
+  />
             </li>
           </ul>
-          <Button className='button-pom' title="Impostazioni" _callback={SettingButton}/>
+          <Button className='set' title="Impostazioni" _callback={SettingButton}/>
           <div className='time-container'>
             <div className='time-wrapper'>
               <CountdownAnimation
@@ -58,20 +59,20 @@ const Pomodoro=()=>{
             </div>
           </div>
           <div className="button-wrapper">
-            <Button title='Avvia' className={!startAnimate ? 'active' : undefined} _callback={startTimer}/>
-            <Button title='Ferma' className={startAnimate ? 'active' : undefined} _callback={pauseTimer}/>
+            <Button title='Avvia' className={startAnimate ? 'active' : undefined} _callback={startTimer}/>
+            <Button title='Ferma' className={!startAnimate ? 'active' : undefined} _callback={pauseTimer}/>
           </div>
         </>          
-        /*<ul className="pom-background-animation">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul> */  
         }
         
+          <ul className="pom-background-animation">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
         
       </div> 
     )

@@ -1,9 +1,9 @@
-.form-container {
-    margin: 20px;
+.set-form-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 5vh;
+    height: 23vh;
 }
 
 .input-wrapper {
@@ -22,6 +22,15 @@
     border: none;
     font-size: 27px;
     background-color: rgb(255, 255, 255, 0.7);
+    z-index: 1;
+    outline: none;
+}
+
+.input:hover{
+    opacity: 1;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    color: white;
+    cursor: pointer;
 }
 
 input::-webkit-outer-spin-button,
@@ -31,14 +40,20 @@ input::-webkit-inner-spin-button {
 }
 
 .setTimer {
-    padding: 10px 20px;
+    margin-left: 11%;
     border: none;
-    border-radius: 5px;
     background-color: rgb(255, 255, 255, 0.7);
+    border-radius:3rem;
+    margin-top: 2%;
     cursor: pointer;
+    position: absolute;
+    padding: 7px 0 7px 0;
+    width: 100px;
+    z-index: 1;
 }
 
 .setTimer:hover {
-    background-color: white;
-    background-color: rgb(255, 255, 255);
+    opacity: 1;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    color: white;
 }
