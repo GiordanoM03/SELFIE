@@ -1,65 +1,62 @@
-import React, { useContext, useState } from 'react';
+import React, {useContext, useState} from 'react'
 import Button from './Button'
-import { SettingContext } from '../context/SettingContext';
+import { SettingContext } from '../context/SettingsContext'
 import '../CSS/SetPomodoro.css';
 
 const SetPomodoro = () => {
+    const {updateExecute}= useContext(SettingContext)
     const [newTimer, setNewTimer]= useState({
-        study: 30,
+        work: 30,
         break: 5,
         cicle: 5,
-        active: 'study'
+        active: 'work'
     })
 
-    const {updateExecute} = useContext(SettingContext)
-
-    const handleChange= input =>{
+    const handleChange= input => {
         const {name, value}= input.target
-
         switch(name){
-            case 'studio':
+            case 'work':
                 setNewTimer({
                     ...newTimer,
-                    study: parseFloat(value)
+                    work: parseInt(value)
                 })
                 break;
-
-            case 'pausa':
+            
+            case 'break':
                 setNewTimer({
                     ...newTimer,
                     break: parseInt(value)
                 })
-                break;
-
-            case 'ciclo':
+                break;  
+            
+            case 'cicle':
                 setNewTimer({
                     ...newTimer,
                     cicle: parseInt(value)
                 })
                 break;
-            
+
             default:
                 break;
         }
     }
 
     const handleSubmit= e =>{
-        e.preventDefault();
+        e.preventDefault()
         updateExecute(newTimer)
     }
-
+    
   return (
-    <div className="set-form-container">
-        <form noValidate onSubmit={handleSubmit}>
-            <div className="input-wrapper">
-                <input className='input' type="number" name='studio' onChange={handleChange} value={newTimer.study}/>
-                <input className='input' type="number" name='pausa' onChange={handleChange} value={newTimer.break}/>
-                <input className='input' type="number" name='ciclo' onChange={handleChange} value={newTimer.cicle}/>
+    <div className='set-form-container'>
+        <form noValidate>
+            <div className='input-wrapper'>
+                <input className='input' name='work' onChange={handleChange} value={newTimer.work}/>
+                <input className='input' name='break' onChange={handleChange} value={newTimer.break}/>
+                <input className='input' name='cicle' onChange={handleChange} value={newTimer.cicle}/>
             </div>
-            <Button className="setTimer" title="Inizia" _callback={handleSubmit}/>
+            <Button className="setTimer" title="Avvia Timer" _callback={handleSubmit}/>
         </form>
     </div>
-
   )
 }
 

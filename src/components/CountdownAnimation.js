@@ -1,26 +1,21 @@
- import React, { useContext } from 'react'
+import React, { useContext } from 'react'
 import {CountdownCircleTimer} from 'react-countdown-circle-timer'
-import { SettingContext } from '../context/SettingContext'
+import { SettingContext } from '../context/SettingsContext'
 
-const CountdownAnimation = ({key=1, timer, animate=true, children}) => {
-
-  const {stopTimer} = useContext(SettingContext);
-
+const CountdownAnimation = ({key=1, timer=20, animate=true, mode, children}) => {
+  
+  const {stopTimer, executing, setCurrentTimer, updateExecute}=useContext(SettingContext)
   return (
     <CountdownCircleTimer
       key={key}
       isPlaying={animate}
-      duration={timer} //aggiungi un *60
-      colors={[
-        ['#fe6f6b', 0.33],
-        ['#f7b801', 0.33],
-        ['#a30000', 0.33]
-      ]}
+      duration={timer*60}
+      colors={mode === 'cicle' ? ['transparent'] : ['#8EC5FC', '#E0C3FC']}
       strokeWidth={6}
-      size={220}
-      trailColor="#151932"
+      size={290}
+      trailColor='#151932'
       onComplete={() => {
-        if (executing.active === 'study') {
+        if (executing.active === 'work') {
             // Passa a "pausa" alla fine dello "studio"
             setCurrentTimer('break');
         } else if (executing.active === 'break') {
@@ -29,7 +24,7 @@ const CountdownAnimation = ({key=1, timer, animate=true, children}) => {
                 // Passa allo stato "studio" e decrementa il ciclo
                 updateExecute({
                     ...executing,
-                    active: 'study', // Riprendi lo studio
+                    active: 'work', // Riprendi lo studio
                     cicle: executing.cicle - 1 // Decrementa il ciclo
                 });
             } else {
