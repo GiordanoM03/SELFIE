@@ -62,9 +62,10 @@ const SettingsContextProvider = (props) => {
         const minutes =Math.floor(remainingTime/60)
         const seconds = remainingTime%60
         const sum=minutes+seconds
-        if(executing.active === 'work' || executing.active === 'break'){
-        console.log('ok')
+        if(executing.active === 'work'){
         return `${minutes}:${seconds}`
+        }else if(executing.active === 'break'){
+            return `${minutes}:${seconds}`
         }else{
             return `${executing.cicle}`
         }
@@ -83,6 +84,7 @@ const SettingsContextProvider = (props) => {
             pauseTimer,
             SettingBtn,
             setCurrentTimer,
+            setTimerTime,
             updateExecute,
             children
             }}>

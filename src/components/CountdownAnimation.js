@@ -1,10 +1,21 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import {CountdownCircleTimer} from 'react-countdown-circle-timer'
 import { SettingContext } from '../context/SettingsContext'
 
 const CountdownAnimation = ({key=1, timer=20, animate=true, mode, children}) => {
   
-  const {stopTimer, executing, setCurrentTimer, updateExecute}=useContext(SettingContext)
+  const {stopTimer, executing, setCurrentTimer, startTimer, updateExecute}=useContext(SettingContext)
+  
+  useEffect(() => {
+    if (executing.active === 'break') {
+      // Azioni da compiere quando si passa a "break"
+      startTimer();
+    } else if (executing.active === 'work') {
+      // Azioni da compiere quando si passa a "work"
+      startTimer();
+    }
+  }, [executing.active]);
+
   return (
     <CountdownCircleTimer
       key={key}
@@ -16,23 +27,21 @@ const CountdownAnimation = ({key=1, timer=20, animate=true, mode, children}) => 
       trailColor='#151932'
       onComplete={() => {
         if (executing.active === 'work') {
-            // Passa a "pausa" alla fine dello "studio"
-            setCurrentTimer('break');
+            setCurrentTimer('break')
+            startTimer();
         } else if (executing.active === 'break') {
-            // Dopo la pausa, controlla se ci sono cicli rimanenti
             if (executing.cicle > 1) {
-                // Passa allo stato "studio" e decrementa il ciclo
                 updateExecute({
                     ...executing,
-                    active: 'work', // Riprendi lo studio
-                    cicle: executing.cicle - 1 // Decrementa il ciclo
+                    active: 'work', 
+                    cicle: executing.cicle - 1 
                 });
+                startTimer();  
             } else {
-                // Se non ci sono più cicli, ferma il timer
                 stopTimer();
             }
         }
-        return [true, 0]; // Ritorna true per riavviare il countdown con il nuovo timer
+        return [true, 0]; 
     }}
     >
       {children}
